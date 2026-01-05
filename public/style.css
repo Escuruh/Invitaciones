@@ -1,0 +1,271 @@
+:root{
+  --bg:#faf7f4;
+  --primary:#c8a77a;
+  --secondary:#f5e9e2;
+  --text:#4a4a4a;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Poppins", sans-serif;
+  line-height:1.6;
+}
+
+/* HERO */
+.hero{
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url("img/fondo.jpeg")
+    center/cover no-repeat;
+  background-attachment: fixed;
+  color:white;
+  text-align:center;
+  padding:100px 20px;
+}
+
+/* En móviles (especialmente iOS) el parallax nativo causa saltos visuales.
+   Es mejor desactivarlo para mantener un scroll suave. */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
+
+
+.hero h1{
+  font-family:"Playfair Display", serif;
+  font-size:52px;
+  margin:0 0 12px;
+  letter-spacing:1.5px;
+}
+
+.hero p{
+  font-size:18px;
+  opacity:.95;
+}
+
+.hero .date{
+  display:inline-block;
+  margin-top:18px;
+  padding:8px 16px;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:999px;
+  font-size:14px;
+}
+
+/* SECTION */
+.wrapper{
+  max-width:1000px;
+  margin:45px auto;
+  padding:0 20px;
+}
+
+.wrapper h2{
+  text-align:center;
+  margin-bottom:25px;
+  font-family:"Playfair Display", serif;
+  font-size:26px;
+}
+
+/* CARDS */
+#cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+  gap:24px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:22px;
+  border:1px solid #eee;
+  box-shadow:0 12px 28px rgba(0,0,0,.06);
+  position:relative;
+  overflow:hidden;
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:6px;
+  background:var(--primary);
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+
+.card h3{
+  margin-top:10px;
+  font-family:"Playfair Display", serif;
+  font-size:20px;
+}
+
+.small{
+  color:#6f6f6f;
+  font-size:14px;
+  margin-top:8px;
+}
+
+/* FOOTER */
+footer{
+  margin-top:45px;
+  text-align:center;
+  padding:28px;
+  font-size:14px;
+  color:#777;
+}
+
+.logo{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.8);
+  margin:0 auto 20px;
+  animation: float 6s ease-in-out infinite; /* Efecto flotante */
+}
+
+.logo span{
+  font-family:"Playfair Display", serif;
+  font-size:30px;
+  letter-spacing:2px;
+}
+
+.fade-in{
+  opacity:0;
+  transform:translateY(10px);
+  animation:fade .8s ease forwards;
+}
+
+@keyframes fade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ANIMACIÓN FLOTANTE (LOGO) */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* SCROLL REVEAL (Aparición al bajar) */
+.hidden {
+  opacity: 0;
+  transform: translateY(50px); /* Empieza más abajo */
+  transition: all 1s ease-out;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ESTILOS DE LA TARJETA DE INVITACIÓN */
+.container {
+  max-width: 700px;
+  margin: -60px auto 50px; /* Sube la tarjeta sobre el hero */
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.invitation-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  text-align: center;
+  border-top: 6px solid var(--primary);
+}
+
+.intro {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.guest-name {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  color: var(--primary);
+  margin: 10px 0 20px;
+  line-height: 1.2;
+}
+
+.guest-message {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.details {
+  background: var(--secondary);
+  padding: 25px;
+  border-radius: 12px;
+  margin: 30px 0;
+}
+
+.details h3 {
+  font-family: "Playfair Display", serif;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+/* Efecto Hover en los textos de detalles */
+.details p {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.details p:hover {
+  transform: translateX(10px); /* Se mueve a la derecha */
+  color: var(--primary);
+}
+
+.details h3:first-child {
+  margin-top: 0;
+}
+
+.map-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn-rsvp {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn-rsvp:hover {
+  background: #a88b60; /* Un tono un poco más oscuro */
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(168, 139, 96, 0.3);
+}

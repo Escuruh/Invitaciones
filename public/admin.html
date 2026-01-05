@@ -1,0 +1,41 @@
+<h2>Agregar invitación</h2>
+
+<div class="admin-form">
+  <label for="nombre">Nombre del invitado:</label><br>
+  <input id="nombre" type="text" placeholder="Ej: Tío Juan y Familia"><br><br>
+  
+  <label for="mensaje">Mensaje personalizado:</label><br>
+  <textarea id="mensaje" rows="4" cols="50" placeholder="Escribe un mensaje especial..."></textarea><br><br>
+
+  <button onclick="guardar()">Guardar Invitación</button>
+</div>
+
+<div id="resultado" style="margin-top:20px; padding:15px; background:#eef; border-radius:8px; display:none;">
+  <strong>¡Listo! Comparte este link:</strong><br>
+  <a id="link-generado" href="#" target="_blank" style="word-break:break-all;"></a>
+</div>
+
+<script>
+async function guardar(){
+  const res = await fetch("/api/invitaciones",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({
+      nombre: nombre.value,
+      mensaje: mensaje.value
+    })
+  });
+
+  const data = await res.json();
+
+  if (data.ok) {
+    const url = `${window.location.origin}/?id=${data.id}`;
+    const linkEl = document.getElementById("link-generado");
+    linkEl.href = url;
+    linkEl.innerText = url;
+    document.getElementById("resultado").style.display = "block";
+  }
+
+  alert("Invitación guardada 🎉");
+}
+</script>
